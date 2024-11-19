@@ -1,0 +1,112 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    background: -webkit-linear-gradient(25deg, #004080, #002E52);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+}
+
+#content_container {
+    width: 30%;
+    height: 70%;
+}
+
+#form_container {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 0 50px -20px #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#form_header_container {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    border-bottom: 1px solid #004080;
+    background: #004080;
+}
+
+#form_header {
+    font-size: 15px;
+    font-family: 'Bowlby One SC', cursive;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+#form_content_container {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+#form_content_inner_container {
+    width: 75%;
+    height: 100%;
+}
+
+input {
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    background: #f0f0f0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #333;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+    input:focus {
+        border-color: #004080;
+    }
+
+#button_container {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+    #button_container button {
+        width: 48%;
+        height: 100%;
+        background: #004080;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 1px;
+        font-weight: 900;
+        font-size: 12px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+    }
+
+        #button_container button:hover {
+            background: #003366;
+        }

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Anything Group</title>
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: #002E52;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #004080;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-group input:focus {
+      border-color: #004080;
+      outline: none;
+    }
+    .form-group button {
+      width: 100%;
+      padding: 0.5rem;
+      background-color: #004080;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .form-group button:hover {
+      background-color: #003366;
+    }
+    .form-group .social-login {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    .form-group .social-login button {
+      width: 48%;
+      background-color: #dd4b39;
+    }
+    .form-group .social-login button.github {
+      background-color: #333;
+    }
+    .form-group .social-login button:hover {
+      opacity: 0.9;
+    }
+    .login-link {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .login-link a {
+      color: #004080;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Register</h2>
+    <form id="register-form">
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input type="text" id="firstname" name="firstname" required>
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input type="text" id="lastname" name="lastname" required>
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Register</button>
+      </div>
+      <div class="form-group social-login">
+        <button type="button" onclick="socialSignIn('google')">Sign in with Google</button>
+        <button type="button" class="github" onclick="socialSignIn('github')">Sign in with GitHub</button>
+      </div>
+      <div class="login-link">
+        Already have an account? <a href="login.html">Login</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js"></script>
+  
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyClkjH5sS7aG3JrXCgjgMCFfiREqkI3dW4",
+      authDomain: "baselink-it.firebaseapp.com",
+      databaseURL: "https://baselink-it-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "baselink-it",
+      storageBucket: "baselink-it.appspot.com",
+      messagingSenderId: "831527386697",
+      appId: "1:831527386697:web:56e4b5c023d4138767c998",
+      measurementId: "G-FMDB6D1N1K"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function registerUser(email, password) {
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Registered successfully
+          alert('Registration successful!');
+          // Redirect to login page or perform any other action
+          window.location.href = 'login.html';
+        })
+        .catch((error) => {
+          // Handle errors
+          alert(error.message);
+        });
+    }
+
+    document.getElementById('register-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+
+      registerUser(email, password);
+    });
+
+    function socialSignIn(provider) {
+      // Add social sign-in logic here
+      alert('Sign in with ' + provider + ' is not implemented yet.');
+    }
+  </script>
+</body>
+</html>

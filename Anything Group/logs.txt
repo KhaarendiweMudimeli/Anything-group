@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anything Group</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: white;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
+    header {
+      background-color: #002E52;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 50px;
+      height: auto;
+      margin-right: 1rem;
+    }
+
+    .search-bar {
+      background-color: white;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      max-width: 300px;
+      flex-grow: 1;
+      margin: 0 1rem;
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      flex-grow: 1;
+      font-size: 1rem;
+    }
+
+    .search-bar .search-icon {
+      fill: #666;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 1rem;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      margin-right: 1rem;
+    }
+
+    .profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+
+    .profile span {
+      color: white;
+      font-size: 1rem;
+    }
+
+    .menu-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background-color: #002E52;
+      color: white;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      z-index: 999;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0.5rem 0;
+      background-color: #004080;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #0059b3;
+    }
+
+    nav a::after {
+      content: '>';
+      margin-left: 1rem;
+    }
+
+    nav.show {
+      transform: translateX(0);
+    }
+
+    nav .close-icon {
+      color: white;
+      font-size: 1.5rem;
+      margin-left: auto;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .link-header {
+      background-color: #004080;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      position: fixed;
+      width: 100%;
+      top: 4rem; /* Adjust based on the height of the top header */
+      z-index: 998;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.5rem;
+      transition: background-color 0.3s;
+    }
+
+    .links a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+    }
+
+    main {
+      background-image: url('boatgif.gif'); /* Replace with the path to your GIF */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      padding-top: 9rem; /* Adjust to prevent content from being hidden behind the fixed headers */
+      box-sizing: border-box;
+    }
+
+    .content {
+      text-align: center;
+    }
+
+    .content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .content p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .content a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border: 2px solid white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .content a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    footer {
+      background-color: #002E52;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="A LOGO.png" alt="Logo"> <!-- Use the relative path here -->
+      <h1>Anything Group</h1>
+    </div>
+    <div class="search-bar">
+      <svg class="search-icon" viewBox="0 0 24 24">
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 9.5 14 9.5 11.99 14 9.5 14z"/>
+      </svg>
+      <input type="text" placeholder="Search">
+    </div>
+    <div class="profile">
+      <img src="images/profile.jpg" alt="Profile Picture"> <!-- Use the relative path here -->
+      <span>Username</span>
+    </div>
+    <button class="menu-button" onclick="toggleMenu()">
+      <span class="menu-icon">&#9776;</span>
+    </button>
+    <nav id="slideout-menu">
+      <span class="close-icon" onclick="toggleMenu()">&times;</span>
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+  <div class="link-header">
+    <div class="links">
+      <a href="#">Projects</a>
+      <span>|</span>
+      <a href="#">Team</a>
+      <span>|</span>
+      <a href="#">Partners</a>
+      <span>|</span>
+      <a href="#">About</a>
+    </div>
+  </div>
+  <main>
+    <div class="content">
+      <h1>Welcome to Anything Group</h1>
+      <p>Your one-stop destination for everything you need!</p>
+      <a href="#">Get Started</a>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2024 Anything Group, Inc.</p>
+  </footer>
+  <script>
+    function toggleMenu() {
+      var menu = document.getElementById('slideout-menu');
+      if (menu.classList.contains('show')) {
+        menu.classList.remove('show');
+      } else {
+        menu.classList.add('show');
+      }
+    }
+  </script>
+</body>
+</html>
+
